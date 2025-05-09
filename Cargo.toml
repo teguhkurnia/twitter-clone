@@ -1,0 +1,20 @@
+[package]
+name = "twitter-clone"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web="4"
+actix-web-validation = {version = "0.8.0", features = ["garde"] }
+garde = { version = "0.22.0", features = ["derive", "full"] }
+serde = {version = "1.0.219", features = ["derive"]}
+diesel = { version = "2.2.10", features = ["postgres", "r2d2", "chrono"] }
+dotenvy = { version = "0.15" }
+r2d2 = "0.8.10"
+async-trait = "0.1.88"
+chrono = { version = "0.4.41", features = ["serde"] }
+bcrypt = "0.17.0"
+jwt = "0.16.0"
+hmac = "0.12.1"
+sha2 = "0.10.9"
+diesel-derive-enum = { version = "2.1.0", features = ["postgres"] }
