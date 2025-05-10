@@ -19,7 +19,16 @@ pub async fn create_post(
   auth: Authenticated,
   Validated(Json(payload)): Validated<Json<CreatePostDto>>,
 ) -> HttpResponse {
-  print!("User ID: {}", auth.id);
-  // let new_post = app_data.post_repository.
-  HttpResponse::Created().json(payload)
+  let post = app_data.post_repository.create_post(auth.id, payload).await.unwrap();
+  HttpResponse::Created().json(post)
+}
+
+#[get("{post_id}/replies")]
+pub async fn get_replies(
+  app_data: web::Data<AppData>,
+  auth: Authenticated,
+  post_id: web::Path<i32>,
+) -> HttpResponse {
+  let replies = app_data.post_repository.find_post_replies(auth.id, post_id.into_inner()).await.unwrap();
+  HttpResponse::Ok().json(replies)
 }
