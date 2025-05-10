@@ -9,6 +9,7 @@ impl PostRoutes {
         cfg.service(
             web::scope("/posts")
                 .service(post_handler::get_posts)
+                .service(post_handler::get_replies)
                 .service(post_handler::create_post)
         );
     }
